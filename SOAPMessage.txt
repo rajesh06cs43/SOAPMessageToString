@@ -1,0 +1,30 @@
+public static String getStringFromSoapMessage(SOAPMessage msg) { 
+			        try { 
+			        /*TransformerFactory transFactory = TransformerFactory.newInstance(); 
+		            Transformer transformer = transFactory.newTransformer(); 
+		            transformer.setOutputProperty(OutputKeys.OMIT_XML_DECLARATION, "no");
+		            transformer.setOutputProperty(OutputKeys.METHOD, "xml");
+		            transformer.setOutputProperty(OutputKeys.INDENT, "yes");
+		            transformer.setOutputProperty(OutputKeys.ENCODING, "UTF-8");
+		            transformer.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", "4");*/
+		            /*final Source soapContent = msg.getSOAPPart().getContent();
+		            final ByteArrayOutputStream streamOut = new ByteArrayOutputStream();
+		            final StreamResult steamResult = new StreamResult(streamOut);
+		            transformer.transform(soapContent, steamResult);
+		            return streamOut.toString();*/
+		            ByteArrayOutputStream streamOut = new ByteArrayOutputStream();
+		            StreamResult steamResult = new StreamResult(streamOut);
+		            msg.writeTo(streamOut);
+		            String output = streamOut.toString();
+		            return output;
+		            
+		            /*DOMSource source = new DOMSource(msg.getSOAPPart());
+		            StringWriter sw = new StringWriter(); 
+		            StreamResult result = new StreamResult(sw); 
+		            transformer.transform(source, result);
+		            return sw.toString();  */
+		        } catch (Exception e) { 
+		        	e.printStackTrace();
+		            return null; 
+		        } 
+	}
